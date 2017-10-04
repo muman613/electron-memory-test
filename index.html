@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Electron Memory Test</title>
+    <script src="app/main.js"></script>
+    <style>
+        button {
+            color: blue;
+        }
+
+        #status {
+            color: blue;
+            font-weight: bold;
+        }
+
+        #info {
+            padding: 8px;
+            background-color: lightgray;
+            border:1px solid black;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="info">
+        <center><h2>Instructions</h2></center>
+        <p>This application was developed to demonstrate a limitation in the <b>Electron/NodeJS</b>
+        environment.</p>
+        <p>The <b>Emscripten</b> transpiler implements the application heap as an
+        <tt>ArrayBuffer</tt> object. This application will show that any attempt to allocate
+        a heap of greater than or equal to (>=) 2Gb results in a <em>'RangeError: Array buffer allocation failed'</em> exception.</p>
+        <p>In the <b>Memory Parameters</b> section below enter a value for Memory Size and select
+        the memory prefix (Gb/Mb/Kb/b) from the select control. Hit the 'Allocate' button
+        to attempt to allocate the memory. If it suceeds a message is displayed in the status
+        section, otherwise an alert is displayed with the Exception message.</p>
+    </div>
+    <h1>Memory Parameters</h1>
+    <label for="memSize">Memory Size :&nbsp;</label><input type="text" value="2" name="memSize" id="memSize">
+    <select name="prefix" id="prefix">
+        <option value="G">Gigabytes</option>
+        <option value="M">Megabytes</option>
+        <option value="K">Kilobytes</option>
+        <option value="B" selected>Bytes</option>
+    </select>
+    <button onclick="onAllocate();">Allocate</button>
+
+    <br><br>
+
+    <div id="status">
+        <strong>No Buffer</strong>
+    </div>
+</body>
+
+</html>
