@@ -9,14 +9,14 @@ const   fs    = require('fs');
 
 let     mainWindow = undefined;
 
-console.log("OK " + __dirname);
+//console.log("OK " + __dirname);
 
 /** Create the browser window */
 function createWindow() {
     mainWindow = new BrowserWindow( { width: 800, height: 600 } );
 
     mainWindow.on('closed', () => {
-        console.log("mainwindow closed!");
+//      console.log("mainwindow closed!");
         mainWindow = null;
     });
 
@@ -26,7 +26,7 @@ function createWindow() {
         slashes: true,
     });
 
-    console.log("loading " + loadURL.toString());
+ // console.log("loading " + loadURL.toString());
     mainWindow.loadURL(loadURL);
 }
 
