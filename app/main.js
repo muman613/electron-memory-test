@@ -32,6 +32,50 @@ function doAllocate(numBytes) {
 }
 
 /**
+ *  Handle change of prefixSize selector.
+ */
+function onPrefixChange(sel) {
+    let memorySize = memSizeEl.value;
+    let oldMemPre  = sizePreEl.oldValue;
+    let memoryPre  = sizePreEl.value;
+    let totalMemSize = 0;
+
+    switch (oldMemPre) {
+        case 'B':
+            totalMemSize = memorySize;
+            break;
+        case 'K':
+            totalMemSize = (memorySize * 1024);
+            break;
+        case 'M':
+            totalMemSize = (memorySize * 1024 * 1024);
+            break;
+        case 'G':
+            totalMemSize = (memorySize * 1024 * 1024 * 1024);
+            break;
+    }
+
+    console.log("total memory size " + totalMemSize);
+
+    switch (memoryPre) {
+        case 'B':
+            memSizeEl.value = parseInt(totalMemSize, 10);
+            break;
+        case 'K':
+            memSizeEl.value = parseInt((totalMemSize / 1024), 10);
+            break;
+        case 'M':
+            memSizeEl.value = parseInt((totalMemSize / (1024 * 1024)), 10);
+            break;
+        case 'G':
+            memSizeEl.value = parseInt((totalMemSize / (1024 * 1024 * 1024)), 10);
+            break;
+    }
+
+    sizePreEl.oldValue = sizePreEl.value;
+}
+
+/**
  *  Handle user selection, get value from HTMLElement and caluclate memory size
  */
 function onAllocate() {
@@ -71,6 +115,7 @@ window.onload = () => {
     statusEl  = document.getElementById('status');
 
     memSizeEl.value = "2147483648";
+    sizePreEl.oldValue = sizePreEl.value;   // stash old value for onPrefixChange
     statusEl.innerHTML = "No Buffer loaded";
 }
 

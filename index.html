@@ -38,10 +38,11 @@
         the memory prefix (Gb/Mb/Kb/b) from the select control. Hit the 'Allocate' button
         to attempt to allocate the memory. If it suceeds a message is displayed in the status
         section, otherwise an alert is displayed with the Exception message.</p>
+        <p>See project README.md file for more information</p>
     </div>
     <h1>Memory Parameters</h1>
     <label for="memSize">Memory Size :&nbsp;</label><input type="text" value="2" name="memSize" id="memSize">
-    <select name="prefix" id="prefix">
+    <select name="prefix" id="prefix" onchange="onPrefixChange(this);">
         <option value="G">Gigabytes</option>
         <option value="M">Megabytes</option>
         <option value="K">Kilobytes</option>
