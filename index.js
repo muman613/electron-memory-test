@@ -2,10 +2,10 @@
  *  main entry point for Electron
  */
 
-const   {app, BrowserWindow, Menu} = require('electron')
-const   path  = require('path')
-const   url   = require('url')
-const   fs    = require('fs');
+const   {app, BrowserWindow} = require('electron');
+const   path  = require('path');
+const   url   = require('url');
+//const   fs    = require('fs');
 
 let     mainWindow = undefined;
 
@@ -16,7 +16,7 @@ function createWindow() {
     mainWindow = new BrowserWindow( { width: 800, height: 600 } );
 
     mainWindow.on('closed', () => {
-//      console.log("mainwindow closed!");
+        //console.log("mainwindow closed!");
         mainWindow = null;
     });
 
@@ -26,7 +26,7 @@ function createWindow() {
         slashes: true,
     });
 
- // console.log("loading " + loadURL.toString());
+    //console.log("loading " + loadURL.toString());
     mainWindow.loadURL(loadURL);
 }
 
